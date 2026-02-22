@@ -53,3 +53,7 @@ We can use the two-pointer algorithm. If nums[0] + nums[n-1] > target, then we k
 
 Hint 4
 We keep two pointers, one at the start and the other at the end of the array. If the sum of the numbers at the two pointers is greater than the target, decrement the right pointer, else increment the left pointer. Repeat this process until you find a valid pair.
+
+
+- https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/
+- https://neetcode.io/problems/two-integer-sum-ii/question?list=neetcode150
