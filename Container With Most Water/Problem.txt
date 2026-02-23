@@ -55,3 +55,6 @@ We can use the two pointer algorithm. One pointer is at the start and the other 
 Hint 4
 In the formula, the amount of water depends only on the minimum height. Therefore, it is appropriate to replace the smaller height value.
 
+https://neetcode.io/problems/max-water-container/question
+
+https://leetcode.com/problems/container-with-most-water/description/

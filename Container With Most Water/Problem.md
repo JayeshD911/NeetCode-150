@@ -62,3 +62,7 @@ So, the area = `7 × 7 = 49`. :contentReference[oaicite:2]{index=2}
     3. Repeat while `l < r`. :contentReference[oaicite:5]{index=5}
 
 - The fact that moving the pointer at the shorter line always leads toward the optimal solution is a key observation for correctness. :contentReference[oaicite:6]{index=6}
+
+https://neetcode.io/problems/max-water-container/question
+
+https://leetcode.com/problems/container-with-most-water/description/
