@@ -117,3 +117,7 @@ This works because a car with a **larger arrival time** after sorting cannot cat
 - Sorting
 - Greedy
 - Monotonic stack  
+
+
+https://neetcode.io/problems/car-fleet/question
+https://leetcode.com/problems/car-fleet/
