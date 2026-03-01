@@ -103,3 +103,5 @@ If you want to run locally:
 - ✅ Merge Two Sorted Lists
 
 > As more solutions are added, this checklist will be expanded to match the full NeetCode 150 roadmap.
+
+My LeetCode profile: https://leetcode.com/u/jaydec1997/
