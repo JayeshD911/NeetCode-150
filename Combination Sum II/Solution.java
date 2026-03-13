@@ -14,8 +14,10 @@ class Solution {
         //backtrack
         temp.remove(temp.size() -1);
 
-        while(index + 1 < candidates.length && candidates[index] == candidates[index + 1]) index++;
-        solve(candidates,target ,temp , ans, index + 1);
+        int next = index + 1;
+
+        while(next < candidates.length && candidates[index] == candidates[next]) next++;
+        solve(candidates,target ,temp , ans, next);
     }
 
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
@@ -27,6 +29,7 @@ class Solution {
     }
 }
 
+// Still good enough but upper is more tuned
 //class Solution {
 //
 //    public void solve(int[] candidates,int target, ArrayList<Integer> temp,List<List<Integer>> ans, int index){
