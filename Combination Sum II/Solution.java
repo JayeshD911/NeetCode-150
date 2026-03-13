@@ -5,7 +5,7 @@ class Solution {
             ans.add(new ArrayList<>(temp));
             return;
         }
-        if(index == candidates.length) return;
+        if(index == candidates.length || candidates[index] > target) return;
 
         if(candidates[index] <= target ){
             //include the number at index
