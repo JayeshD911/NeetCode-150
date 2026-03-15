@@ -10,14 +10,14 @@ class Solution {
 
         char temp = board[row][col];  //store value in temp so that we can later revert and backtrack
         board[row][col] = '*';        // mark visited so that it dosen't access again in the next dfs call
-        if (dfs(board, word, row + 1, col, wordIdx + 1) || // move right
-                dfs(board, word, row, col + 1, wordIdx + 1) || // move down
-                dfs(board, word, row - 1, col, wordIdx + 1) || // move left
-                dfs(board, word, row, col - 1, wordIdx + 1)    // move up
+        if (dfs(board, word, row + 1, col, wordIdx + 1) || // move down
+                dfs(board, word, row, col + 1, wordIdx + 1) || // move right
+                dfs(board, word, row - 1, col, wordIdx + 1) || // move up
+                dfs(board, word, row, col - 1, wordIdx + 1)    // move left
         ) return true;
 
         //backtrack / rollback
-        board[row][col] = temp;
+        board[row][col] = temp;     // you can also put this inside the if block if you want to retain the original input
 
         return false;
     }
