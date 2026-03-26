@@ -11,7 +11,7 @@
 
 class Solution {
     public int minMeetingRooms(List<Interval> intervals) {
-
+        int ans = 0;
         intervals.sort((a, b) -> a.start - b.start);
 
         PriorityQueue<Integer> minHeap = new PriorityQueue<>();
@@ -23,9 +23,10 @@ class Solution {
             }
 
             minHeap.offer(interval.end);
+            ans = Math.max(ans, minHeap.size());
         }
 
-        return minHeap.size();
+        return ans;
     }
 }
 
