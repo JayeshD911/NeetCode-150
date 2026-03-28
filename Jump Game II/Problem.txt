@@ -1,0 +1,53 @@
+Jump Game II
+Medium
+Topics
+Company Tags
+Hints
+You are given an array of integers nums, where nums[i] represents the maximum length of a jump towards the right from index i. For example, if you are at nums[i], you can jump to any index i + j where:
+
+j <= nums[i]
+i + j < nums.length
+You are initially positioned at nums[0].
+
+Return the minimum number of jumps to reach the last position in the array (index nums.length - 1). You may assume there is always a valid answer.
+
+Example 1:
+
+Input: nums = [2,4,1,1,1,1]
+
+Output: 2
+Explanation: Jump from index 0 to index 1, then jump from index 1 to the last index.
+
+Example 2:
+
+Input: nums = [2,1,2,1,0]
+
+Output: 2
+Constraints:
+
+1 <= nums.length <= 1000
+0 <= nums[i] <= 100
+
+
+Topics
+
+Recommended Time & Space Complexity
+
+Hint 1
+A brute force approach would be to recursively explore all paths from index 0 to its reachable indices, then process those indices similarly and return the minimum steps to reach the last index. This would be an exponential approach. Can you think of a better way? Maybe a greedy approach works.
+
+
+Hint 2
+We maintain two pointers, l and r, initially set to 0, representing the range of reachable indices. At each step, we iterate through the indices in the range l to r and determine the farthest index that can be reached from the current range.
+
+
+Hint 3
+We then update the pointers l and r to the next range, setting l to r + 1 and r to the farthest index reachable from the current range. We continue this process until the pointers go out of bounds.
+
+
+Hint 4
+The number of steps taken represents the minimum steps required to reach the last index, as it is guaranteed that we can reach it.
+
+https://neetcode.io/problems/jump-game-ii/question
+
+https://leetcode.com/problems/jump-game-ii/description/
