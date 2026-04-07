@@ -1,59 +1,109 @@
 class Solution {
     public int orangesRotting(int[][] grid) {
+        int n = grid.length;
+        int m = grid[0].length;
+        int time = 0;
+        int ripes= 0;
 
-        int m = grid.length;
-        int n = grid[0].length;
+        Queue<int[]> queue = new ArrayDeque<>();
 
-        Queue<int[]> queue = new LinkedList<>();
-        int fresh = 0;
-
-        // Step 1: initialize
-        for(int i = 0; i < m; i++){
-            for(int j = 0; j < n; j++){
-
-                if(grid[i][j] == 2){
-                    queue.offer(new int[]{i, j});
-                }
-
-                if(grid[i][j] == 1){
-                    fresh++;
-                }
+        for(int i = 0; i< n ; i++){
+            for(int j = 0; j< m ; j++){
+                if(grid[i][j] == 2) queue.offer(new int[]{i,j});
+                if(grid[i][j] == 1) ripes++;
             }
         }
 
+        int [][] directions = {{0,1},{0,-1},{1,0},{-1,0}};
+        while(!queue.isEmpty()){
+            int qLength = queue.size();
+            boolean rotted = false;
+
+            while (qLength > 0){
+                int [] x = queue.poll();
+                int r = x[0];
+                int c = x[1];
+                for (int[] d : directions){
+                    int newR = r + d[0];
+                    int newC = c + d[1];
+
+                    if(newR < 0 || newC < 0 || newR >= n || newC >= m || grid[newR][newC] == 0 || grid[newR][newC] == 2 ) continue;
+
+                    else{                   //if grid[newR][newC] = 1
+                        rotted = true;
+                        grid[newR][newC] = 2;
+                        queue.offer(new int[]{newR,newC});
+                        ripes--;
+                    }
+                }
+                qLength--;
+            }
+            if (rotted) time++;
+
+        }
+
+        return ripes > 0 ? -1: time;
+
+    }
+}
+
+
+
+
+
+
+// Easy to understand. Separate final ripe counting logic
+class Solution {
+    public int orangesRotting(int[][] grid) {
+        int n = grid.length;
+        int m = grid[0].length;
         int time = 0;
 
-        int[][] directions = {{1,0},{-1,0},{0,1},{0,-1}};
+        Queue<int[]> queue = new ArrayDeque<>();
 
-        // Step 2: BFS
-        while(!queue.isEmpty() && fresh > 0){
-
-            int size = queue.size();
-
-            for(int i = 0; i < size; i++){
-
-                int[] curr = queue.poll();
-                int r = curr[0];
-                int c = curr[1];
-
-                for(int[] d : directions){
-
-                    int nr = r + d[0];
-                    int nc = c + d[1];
-
-                    if(nr < 0 || nc < 0 || nr >= m || nc >= n || grid[nr][nc] != 1){
-                        continue;
-                    }
-
-                    grid[nr][nc] = 2;
-                    queue.offer(new int[]{nr, nc});
-                    fresh--;
-                }
+        // Find the rotten oranges
+        for(int i = 0; i< n ; i++){
+            for(int j = 0; j< m ; j++){
+                if(grid[i][j] == 2) queue.offer(new int[]{i,j});
             }
-
-            time++;
         }
 
-        return fresh == 0 ? time : -1;
+        // BFS
+        int [][] directions = {{0,1},{0,-1},{1,0},{-1,0}};
+        while(!queue.isEmpty()){
+            int qLength = queue.size();
+            boolean rotted = false;
+
+            while (qLength > 0){
+                int [] x = queue.poll();
+                int r = x[0];
+                int c = x[1];
+                for (int[] d : directions){
+                    int newR = r + d[0];
+                    int newC = c + d[1];
+
+                    if(newR < 0 || newC < 0 || newR >= n || newC >= m || grid[newR][newC] == 0 || grid[newR][newC] == 2 ) continue;
+
+                    else{
+                        rotted = true;
+                        grid[newR][newC] = 2;
+                        queue.offer(new int[]{newR,newC});
+                    }
+                }
+                qLength--;
+            }
+            if (rotted) time++;
+
+        }
+
+        // Find if any still fresh
+        for(int i = 0; i< n ; i++){
+            for(int j = 0; j< m ; j++){
+                if(grid[i][j] == 1) return -1;
+            }
+        }
+
+        return time;
+
     }
 }
