@@ -57,20 +57,20 @@ Output: 8
 
 ## 🚀 Code (Sum Approach - Java)
 
-class Solution {
-public int missingNumber(int[] nums) {
-int n = nums.length;
-
-        int expected = n * (n + 1) / 2;
-        int actual = 0;
-        
-        for (int num : nums) {
-            actual += num;
+    class Solution {
+    public int missingNumber(int[] nums) {
+    int n = nums.length;
+    
+            int expected = n * (n + 1) / 2;
+            int actual = 0;
+            
+            for (int num : nums) {
+                actual += num;
+            }
+            
+            return expected - actual;
         }
-        
-        return expected - actual;
     }
-}
 
 ---------------------
 
@@ -83,18 +83,18 @@ int n = nums.length;
 
 ## 🚀 Code (XOR Approach - Java)
 
-class Solution {
-public int missingNumber(int[] nums) {
-int n = nums.length;
-int xor = n;
-
-        for (int i = 0; i < n; i++) {
-            xor ^= i ^ nums[i];
+    class Solution {
+        public int missingNumber(int[] nums) {
+        int n = nums.length;
+        int xor = n;
+    
+            for (int i = 0; i < n; i++) {
+                xor ^= i ^ nums[i];
+            }
+            
+            return xor;
         }
-        
-        return xor;
     }
-}
 
 ---------------------
 
