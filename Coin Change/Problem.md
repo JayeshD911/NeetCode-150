@@ -65,26 +65,26 @@ Output: 0
 
 ## 🚀 Code (Bottom-Up DP - Java)
 
-class Solution {
-public int coinChange(int[] coins, int amount) {
-int[] dp = new int[amount + 1];
-
-        // Initialize with max value
-        for (int i = 0; i <= amount; i++) {
-            dp[i] = amount + 1;
-        }
-        
-        dp[0] = 0;
-        
-        for (int coin : coins) {
-            for (int i = coin; i <= amount; i++) {
-                dp[i] = Math.min(dp[i], dp[i - coin] + 1);
+    class Solution {
+    public int coinChange(int[] coins, int amount) {
+    int[] dp = new int[amount + 1];
+    
+            // Initialize with max value
+            for (int i = 0; i <= amount; i++) {
+                dp[i] = amount + 1;
             }
+            
+            dp[0] = 0;
+            
+            for (int coin : coins) {
+                for (int i = coin; i <= amount; i++) {
+                    dp[i] = Math.min(dp[i], dp[i - coin] + 1);
+                }
+            }
+            
+            return dp[amount] > amount ? -1 : dp[amount];
         }
-        
-        return dp[amount] > amount ? -1 : dp[amount];
     }
-}
 
 ---------------------
 
@@ -97,35 +97,35 @@ int[] dp = new int[amount + 1];
 
 ## 🚀 Code (Top-Down DP - Java)
 
-import java.util.Arrays;
-
-class Solution {
-public int coinChange(int[] coins, int amount) {
-int[] memo = new int[amount + 1];
-Arrays.fill(memo, -2); // -2 means unvisited
-
-        return dfs(coins, amount, memo);
-    }
+    import java.util.Arrays;
     
-    private int dfs(int[] coins, int amount, int[] memo) {
-        if (amount == 0) return 0;
-        if (amount < 0) return -1;
-        
-        if (memo[amount] != -2) return memo[amount];
-        
-        int min = Integer.MAX_VALUE;
-        
-        for (int coin : coins) {
-            int res = dfs(coins, amount - coin, memo);
-            if (res >= 0) {
-                min = Math.min(min, res + 1);
-            }
+    class Solution {
+    public int coinChange(int[] coins, int amount) {
+    int[] memo = new int[amount + 1];
+    Arrays.fill(memo, -2); // -2 means unvisited
+    
+            return dfs(coins, amount, memo);
         }
         
-        memo[amount] = (min == Integer.MAX_VALUE) ? -1 : min;
-        return memo[amount];
+        private int dfs(int[] coins, int amount, int[] memo) {
+            if (amount == 0) return 0;
+            if (amount < 0) return -1;
+            
+            if (memo[amount] != -2) return memo[amount];
+            
+            int min = Integer.MAX_VALUE;
+            
+            for (int coin : coins) {
+                int res = dfs(coins, amount - coin, memo);
+                if (res >= 0) {
+                    min = Math.min(min, res + 1);
+                }
+            }
+            
+            memo[amount] = (min == Integer.MAX_VALUE) ? -1 : min;
+            return memo[amount];
+        }
     }
-}
 
 ---------------------
 
@@ -139,40 +139,40 @@ Arrays.fill(memo, -2); // -2 means unvisited
 
 ## 🚀 Code (BFS - Java)
 
-import java.util.*;
-
-class Solution {
-public int coinChange(int[] coins, int amount) {
-Queue<Integer> queue = new LinkedList<>();
-boolean[] visited = new boolean[amount + 1];
-
-        queue.add(amount);
-        visited[amount] = true;
-        
-        int level = 0;
-        
-        while (!queue.isEmpty()) {
-            int size = queue.size();
-            level++;
+    import java.util.*;
+    
+    class Solution {
+    public int coinChange(int[] coins, int amount) {
+    Queue<Integer> queue = new LinkedList<>();
+    boolean[] visited = new boolean[amount + 1];
+    
+            queue.add(amount);
+            visited[amount] = true;
             
-            for (int i = 0; i < size; i++) {
-                int curr = queue.poll();
+            int level = 0;
+            
+            while (!queue.isEmpty()) {
+                int size = queue.size();
+                level++;
                 
-                for (int coin : coins) {
-                    int next = curr - coin;
+                for (int i = 0; i < size; i++) {
+                    int curr = queue.poll();
                     
-                    if (next == 0) return level;
-                    if (next < 0 || visited[next]) continue;
-                    
-                    visited[next] = true;
-                    queue.add(next);
+                    for (int coin : coins) {
+                        int next = curr - coin;
+                        
+                        if (next == 0) return level;
+                        if (next < 0 || visited[next]) continue;
+                        
+                        visited[next] = true;
+                        queue.add(next);
+                    }
                 }
             }
+            
+            return -1;
         }
-        
-        return -1;
     }
-}
 
 ---------------------
 
